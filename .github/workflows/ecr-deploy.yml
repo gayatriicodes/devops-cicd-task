@@ -18,6 +18,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: Check GitHub OIDC configuration
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.info(`Repository: ${process.env.GITHUB_REPOSITORY}`);
+            core.info(`Branch: ${process.env.GITHUB_REF}`);
+            core.info(`Workflow: ${process.env.GITHUB_WORKFLOW}`);
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
